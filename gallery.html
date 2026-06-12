@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
 
+    <!-- Font Awesome 6 CDN for search icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <title>Builders in Perungudi, Civil work in Perungudi, Building contractors in Perungudi, Construction Company in Perungudi, Civil work contractors in Perungudi</title>
 
     <style>
@@ -28,6 +31,7 @@
             margin-bottom: 30px;
             height: 300px;
             cursor: pointer;
+            background-color: #f0f0f0;
         }
         
         .single-projects img {
@@ -40,7 +44,61 @@
         .single-projects:hover img {
             transform: scale(1.05);
         }
-        /* Lightbox overlay styles */
+        /* Overlay with search icon and project name */
+        
+        .project-overlay {
+            position: absolute;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7));
+            color: white;
+            padding: 20px;
+            text-align: center;
+            transition: bottom 0.3s ease;
+            z-index: 2;
+        }
+        
+        .single-projects:hover .project-overlay {
+            bottom: 0;
+        }
+        
+        .search-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+            display: inline-block;
+            background: #2993d5;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .search-icon:hover {
+            transform: scale(1.1);
+            background: #fff;
+            color: #2993d5;
+        }
+        
+        .search-icon i {
+            font-size: 20px;
+        }
+        
+        .project-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0;
+            letter-spacing: 1px;
+        }
+        
+        .project-category {
+            font-size: 12px;
+            margin-top: 5px;
+            color: #2993d5;
+        }
+        /* Lightbox overlay styles - for full image display */
         
         .lightbox-overlay {
             display: none;
@@ -51,7 +109,6 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.95);
             z-index: 10000;
-            cursor: pointer;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
@@ -73,7 +130,9 @@
         
         .lightbox-image {
             max-width: 100%;
-            max-height: 85vh;
+            max-height: 70vh;
+            width: auto;
+            height: auto;
             object-fit: contain;
             border-radius: 5px;
             box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
@@ -138,6 +197,56 @@
             font-size: 16px;
             padding: 10px;
         }
+        
+        .lightbox-title {
+            position: absolute;
+            bottom: -80px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 5px;
+            margin: 0 auto;
+            width: fit-content;
+        }
+        /* Category filter buttons */
+        
+        .filter-buttons {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .filter-btn {
+            background: transparent;
+            border: 2px solid #2993d5;
+            color: #2993d5;
+            padding: 10px 25px;
+            margin: 5px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            display: inline-block;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #2993d5;
+            color: #fff;
+        }
+        /* Gallery item visibility */
+        
+        .gallery-item {
+            display: block;
+        }
+        
+        .gallery-item.hide {
+            display: none;
+        }
         /* Responsive adjustments */
         
         @media (max-width: 768px) {
@@ -160,55 +269,42 @@
                 padding: 10px 15px;
                 font-size: 20px;
             }
+            .project-name {
+                font-size: 14px;
+            }
+            .search-icon {
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+            }
+            .search-icon i {
+                font-size: 16px;
+            }
+            .lightbox-title {
+                font-size: 14px;
+                bottom: -60px;
+            }
+            .lightbox-image {
+                max-height: 60vh;
+            }
+            .filter-btn {
+                padding: 6px 15px;
+                font-size: 12px;
+            }
         }
         
         @media (max-width: 576px) {
             .single-projects {
                 height: 200px;
             }
-        }
-        /* Logo responsive styles */
-        
-        .navbar-brand img {
-            width: auto;
-            height: 65px;
-            max-width: 100%;
-            transition: all 0.3s ease;
-        }
-        
-        .mobile-nav .logo img {
-            height: 50px;
-            width: auto;
-            max-width: 100%;
-        }
-        
-        @media (min-width: 1400px) {
-            .navbar-brand img {
-                height: 85px;
+            .project-overlay {
+                padding: 10px;
             }
-        }
-        
-        @media (min-width: 1200px) and (max-width: 1399px) {
-            .navbar-brand img {
-                height: 75px;
+            .project-name {
+                font-size: 12px;
             }
-        }
-        
-        @media (min-width: 992px) and (max-width: 1199px) {
-            .navbar-brand img {
-                height: 70px;
-            }
-        }
-        
-        @media (max-width: 767px) {
-            .navbar-brand {
-                display: none;
-            }
-        }
-        
-        @media (min-width: 768px) {
-            .mobile-nav {
-                display: none;
+            .lightbox-image {
+                max-height: 50vh;
             }
         }
     </style>
@@ -248,15 +344,14 @@
         <div class="navbar-area">
             <div class="mobile-nav">
                 <a href="index.html" class="logo">
-                    <img src="assets/img/logo.png" alt="Logo">
+                    <img src="assets/img/logo.png" alt="" style="width: 100px;">
                 </a>
             </div>
-
             <div class="construction-nav-one construction-nav-three">
                 <div class="container">
                     <nav class="navbar navbar-expand-md navbar-light">
                         <a class="navbar-brand" href="index.html">
-                            <img src="assets/img/desktop-logo.png" alt="Logo">
+                            <img src="assets/img/desktop-logo.png" alt="" style="width: 200px;">
                         </a>
                         <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                             <ul class="navbar-nav m-auto">
@@ -270,10 +365,10 @@
                                     <a href="services.html" class="nav-link">services</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link dropdown-toggle active">projects</a>
+                                    <a href="#" class="nav-link dropdown-toggle">projects</a>
                                     <ul class="dropdown-menu">
                                         <li class="nav-item">
-                                            <a class="dropdown-item active" href="ongoing-projects.html">Ongoing Projects</a>
+                                            <a class="dropdown-item" href="ongoing-projects.html">Ongoing Projects</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="dropdown-item" href="completed-projects.html">Completed Projects</a>
@@ -287,7 +382,7 @@
                                     <a href="testimonials.html" class="nav-link">Testimonials</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="gallery.html" class="nav-link">Gallery</a>
+                                    <a href="gallery.html" class="nav-link active">Gallery</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="contact.html" class="nav-link">contact</a>
@@ -323,62 +418,426 @@
         </div>
     </section>
 
-    <section class="project-section project-one pt-0">
+    <section class="project-section project-one pt-0 pb-5">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="section-title-left">
                         <h3>Our Gallery</h3>
+                        <h2>Explore Our <span>Projects</span></h2>
                     </div>
                 </div>
             </div>
 
-            <div id="Container" class="row">
-                <div class="col-lg-4 col-md-6">
+            <!-- Filter Buttons -->
+
+
+            <div class="row" id="gallery-container">
+                <!-- Ongoing Projects 1-20 -->
+                <!-- Ongoing 1 -->
+                <div class="col-lg-4 col-md-6 gallery-item ongoing">
                     <div class="single-projects">
-                        <img src="assets/img/gallery/1.jpeg" alt="Gallery Image 1">
+                        <img src="assets/img/ongoing/1.jpg" alt="Ongoing Project 1">
+                        <div class="project-overlay">
+                            <div class="search-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h4 class="project-name">Ranganayaki Builders</h4>
+                            <p class="project-category">Ongoing Project</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6">
+                <!-- Ongoing 2 -->
+                <div class="col-lg-4 col-md-6 gallery-item ongoing">
                     <div class="single-projects">
-                        <img src="assets/img/gallery/2.jpg" alt="Gallery Image 2">
+                        <img src="assets/img/ongoing/2.jpg" alt="Ongoing Project 2">
+                        <div class="project-overlay">
+                            <div class="search-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h4 class="project-name">Ranganayaki Builders</h4>
+                            <p class="project-category">Ongoing Project</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6">
+                <!-- Ongoing 3 -->
+                <div class="col-lg-4 col-md-6 gallery-item ongoing">
                     <div class="single-projects">
-                        <img src="assets/img/gallery/3.jpg" alt="Gallery Image 3">
+                        <img src="assets/img/ongoing/3.jpg" alt="Ongoing Project 3">
+                        <div class="project-overlay">
+                            <div class="search-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h4 class="project-name">Ranganayaki Builders</h4>
+                            <p class="project-category">Ongoing Project</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6">
+                <!-- Ongoing 4 -->
+                <div class="col-lg-4 col-md-6 gallery-item ongoing">
                     <div class="single-projects">
-                        <img src="assets/img/gallery/4.jpg" alt="Gallery Image 4">
+                        <img src="assets/img/ongoing/4.jpg" alt="Ongoing Project 4">
+                        <div class="project-overlay">
+                            <div class="search-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h4 class="project-name">Ranganayaki Builders</h4>
+                            <p class="project-category">Ongoing Project</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6">
+                <!-- Ongoing 5 -->
+                <div class="col-lg-4 col-md-6 gallery-item ongoing">
                     <div class="single-projects">
-                        <img src="assets/img/gallery/5.jpg" alt="Gallery Image 5">
+                        <img src="assets/img/ongoing/5.jpg" alt="Ongoing Project 5">
+                        <div class="project-overlay">
+                            <div class="search-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h4 class="project-name">Ranganayaki Builders</h4>
+                            <p class="project-category">Ongoing Project</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6">
+                <!-- Ongoing 6 -->
+                <div class="col-lg-4 col-md-6 gallery-item ongoing">
                     <div class="single-projects">
-                        <img src="assets/img/gallery/6.jpeg" alt="Gallery Image 6">
+                        <img src="assets/img/ongoing/6.jpg" alt="Ongoing Project 6">
+                        <div class="project-overlay">
+                            <div class="search-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h4 class="project-name">Ranganayaki Builders</h4>
+                            <p class="project-category">Ongoing Project</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6">
+                <!-- Ongoing 7 -->
+                <div class="col-lg-4 col-md-6 gallery-item ongoing">
                     <div class="single-projects">
-                        <img src="assets/img/gallery/7.jpg" alt="Gallery Image 7">
+                        <img src="assets/img/ongoing/7.jpg" alt="Ongoing Project 7">
+                        <div class="project-overlay">
+                            <div class="search-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h4 class="project-name">Ranganayaki Builders</h4>
+                            <p class="project-category">Ongoing Project</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6">
+                <!-- Ongoing 8 -->
+                <div class="col-lg-4 col-md-6 gallery-item ongoing">
                     <div class="single-projects">
-                        <img src="assets/img/gallery/8.jpg" alt="Gallery Image 8">
+                        <img src="assets/img/ongoing/8.jpg" alt="Ongoing Project 8">
+                        <div class="project-overlay">
+                            <div class="search-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h4 class="project-name">Ranganayaki Builders</h4>
+                            <p class="project-category">Ongoing Project</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ongoing 9 -->
+                <div class="col-lg-4 col-md-6 gallery-item ongoing">
+                    <div class="single-projects">
+                        <img src="assets/img/ongoing/9.jpg" alt="Ongoing Project 9">
+                        <div class="project-overlay">
+                            <div class="search-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h4 class="project-name">Ranganayaki Builders</h4>
+                            <p class="project-category">Ongoing Project</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ongoing 10 -->
+                <div class="col-lg-4 col-md-6 gallery-item ongoing">
+                    <div class="single-projects">
+                        <img src="assets/img/ongoing/10.jpg" alt="Ongoing Project 10">
+                        <div class="project-overlay">
+                            <div class="search-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h4 class="project-name">Ranganayaki Builders</h4>
+                            <p class="project-category">Ongoing Project</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ongoing 11 -->
+                <div class="col-lg-4 col-md-6 gallery-item ongoing">
+                    <div class="single-projects">
+                        <img src="assets/img/ongoing/11.jpg" alt="Ongoing Project 11">
+                        <div class="project-overlay">
+                            <div class="search-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h4 class="project-name">Ranganayaki Builders</h4>
+                            <p class="project-category">Ongoing Project</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ongoing 12 -->
+                <div class="col-lg-4 col-md-6 gallery-item ongoing">
+                    <div class="single-projects">
+                        <img src="assets/img/ongoing/12.jpg" alt="Ongoing Project 12">
+                        <div class="project-overlay">
+                            <div class="search-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h4 class="project-name">Ranganayaki Builders</h4>
+                            <p class="project-category">Ongoing Project</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ongoing 13 -->
+                <div class="col-lg-4 col-md-6 gallery-item ongoing">
+                    <div class="single-projects">
+                        <img src="assets/img/ongoing/13.jpg" alt="Ongoing Project 13">
+                        <div class="project-overlay">
+                            <div class="search-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h4 class="project-name">Ranganayaki Builders</h4>
+                            <p class="project-category">Ongoing Project</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ongoing 14 -->
+                <div class="col-lg-4 col-md-6 gallery-item ongoing">
+                    <div class="single-projects">
+                        <img src="assets/img/ongoing/14.jpg" alt="Ongoing Project 14">
+                        <div class="project-overlay">
+                            <div class="search-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h4 class="project-name">Ranganayaki Builders</h4>
+                            <p class="project-category">Ongoing Project</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ongoing 15 -->
+                <div class="col-lg-4 col-md-6 gallery-item ongoing">
+                    <div class="single-projects">
+                        <img src="assets/img/ongoing/15.jpg" alt="Ongoing Project 15">
+                        <div class="project-overlay">
+                            <div class="search-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h4 class="project-name">Ranganayaki Builders</h4>
+                            <p class="project-category">Ongoing Project</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ongoing 16 -->
+                <div class="col-lg-4 col-md-6 gallery-item ongoing">
+                    <div class="single-projects">
+                        <img src="assets/img/ongoing/16.jpg" alt="Ongoing Project 16">
+                        <div class="project-overlay">
+                            <div class="search-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h4 class="project-name">Ranganayaki Builders</h4>
+                            <p class="project-category">Ongoing Project</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ongoing 17 -->
+                <div class="col-lg-4 col-md-6 gallery-item ongoing">
+                    <div class="single-projects">
+                        <img src="assets/img/ongoing/17.jpg" alt="Ongoing Project 17">
+                        <div class="project-overlay">
+                            <div class="search-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h4 class="project-name">Ranganayaki Builders</h4>
+                            <p class="project-category">Ongoing Project</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ongoing 18 -->
+                <div class="col-lg-4 col-md-6 gallery-item ongoing">
+                    <div class="single-projects">
+                        <img src="assets/img/ongoing/18.jpg" alt="Ongoing Project 18">
+                        <div class="project-overlay">
+                            <div class="search-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h4 class="project-name">Ranganayaki Builders</h4>
+                            <p class="project-category">Ongoing Project</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ongoing 19 -->
+                <div class="col-lg-4 col-md-6 gallery-item ongoing">
+                    <div class="single-projects">
+                        <img src="assets/img/ongoing/19.jpg" alt="Ongoing Project 19">
+                        <div class="project-overlay">
+                            <div class="search-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h4 class="project-name">Ranganayaki Builders</h4>
+                            <p class="project-category">Ongoing Project</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ongoing 20 -->
+                <div class="col-lg-4 col-md-6 gallery-item ongoing">
+                    <div class="single-projects">
+                        <img src="assets/img/ongoing/20.jpg" alt="Ongoing Project 20">
+                        <div class="project-overlay">
+                            <div class="search-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h4 class="project-name">Ranganayaki Builders</h4>
+                            <p class="project-category">Ongoing Project</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Completed Projects 1-9 -->
+                <!-- Completed 1 -->
+                <div class="col-lg-4 col-md-6 gallery-item completed">
+                    <div class="single-projects">
+                        <img src="assets/img/completed/1.jpg" alt="Completed Project 1">
+                        <div class="project-overlay">
+                            <div class="search-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h4 class="project-name">Ranganayaki Builders</h4>
+                            <p class="project-category">Completed Project</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Completed 2 -->
+                <div class="col-lg-4 col-md-6 gallery-item completed">
+                    <div class="single-projects">
+                        <img src="assets/img/completed/2.jpg" alt="Completed Project 2">
+                        <div class="project-overlay">
+                            <div class="search-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h4 class="project-name">Ranganayaki Builders</h4>
+                            <p class="project-category">Completed Project</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Completed 3 -->
+                <div class="col-lg-4 col-md-6 gallery-item completed">
+                    <div class="single-projects">
+                        <img src="assets/img/completed/3.jpg" alt="Completed Project 3">
+                        <div class="project-overlay">
+                            <div class="search-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h4 class="project-name">Ranganayaki Builders</h4>
+                            <p class="project-category">Completed Project</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Completed 4 -->
+                <div class="col-lg-4 col-md-6 gallery-item completed">
+                    <div class="single-projects">
+                        <img src="assets/img/completed/4.jpg" alt="Completed Project 4">
+                        <div class="project-overlay">
+                            <div class="search-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h4 class="project-name">Ranganayaki Builders</h4>
+                            <p class="project-category">Completed Project</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Completed 5 -->
+                <div class="col-lg-4 col-md-6 gallery-item completed">
+                    <div class="single-projects">
+                        <img src="assets/img/completed/5.jpg" alt="Completed Project 5">
+                        <div class="project-overlay">
+                            <div class="search-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h4 class="project-name">Ranganayaki Builders</h4>
+                            <p class="project-category">Completed Project</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Completed 6 -->
+                <div class="col-lg-4 col-md-6 gallery-item completed">
+                    <div class="single-projects">
+                        <img src="assets/img/completed/6.jpg" alt="Completed Project 6">
+                        <div class="project-overlay">
+                            <div class="search-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h4 class="project-name">Ranganayaki Builders</h4>
+                            <p class="project-category">Completed Project</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Completed 7 -->
+                <div class="col-lg-4 col-md-6 gallery-item completed">
+                    <div class="single-projects">
+                        <img src="assets/img/completed/7.jpg" alt="Completed Project 7">
+                        <div class="project-overlay">
+                            <div class="search-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h4 class="project-name">Ranganayaki Builders</h4>
+                            <p class="project-category">Completed Project</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Completed 8 -->
+                <div class="col-lg-4 col-md-6 gallery-item completed">
+                    <div class="single-projects">
+                        <img src="assets/img/completed/8.jpg" alt="Completed Project 8">
+                        <div class="project-overlay">
+                            <div class="search-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h4 class="project-name">Ranganayaki Builders</h4>
+                            <p class="project-category">Completed Project</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Completed 9 -->
+                <div class="col-lg-4 col-md-6 gallery-item completed">
+                    <div class="single-projects">
+                        <img src="assets/img/completed/9.jpg" alt="Completed Project 9">
+                        <div class="project-overlay">
+                            <div class="search-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h4 class="project-name">Ranganayaki Builders</h4>
+                            <p class="project-category">Completed Project</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -454,8 +913,7 @@
             <div class="row">
                 <div class="col-lg-8 col-md-6">
                     <div class="single-widget">
-                        <p class="text-white">Copyright © 2022 Ranganayaki Builders. All Rights Reserved. Developed By<a class="text-white" href="https://chennaileads.com/" target="_blank"> Chennai Leads</a>
-                        </p>
+                        <p class="text-white">Copyright © 2022 Ranganayaki Builders. All Rights Reserved. Developed By<a class="text-white" href="https://chennaileads.com/" target="_blank"> Chennai Leads</a></p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
@@ -483,12 +941,54 @@
     <script src="assets/js/ajaxchimp.min.js"></script>
     <script src="assets/js/active.js"></script>
 
-    <!-- Lightbox Script -->
+    <!-- Filter and Lightbox Script -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Get all gallery images
-            const galleryImages = document.querySelectorAll('.single-projects img');
-            const imagesArray = Array.from(galleryImages);
+            // Get filter buttons and gallery items
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+
+            // Filter functionality
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterBtns.forEach(button => button.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+
+                    const filterValue = this.getAttribute('data-filter');
+
+                    // Filter gallery items
+                    galleryItems.forEach(item => {
+                        if (filterValue === 'all') {
+                            item.style.display = 'block';
+                        } else {
+                            if (item.classList.contains(filterValue)) {
+                                item.style.display = 'block';
+                            } else {
+                                item.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+
+            // Get all gallery images and their names for lightbox
+            const projectItems = document.querySelectorAll('.single-projects');
+            const imagesArray = [];
+            const projectNames = [];
+            const projectCategories = [];
+
+            projectItems.forEach((item, index) => {
+                const img = item.querySelector('img');
+                const name = item.querySelector('.project-name');
+                const category = item.querySelector('.project-category');
+                if (img && name) {
+                    imagesArray.push(img);
+                    projectNames.push(name.innerText);
+                    projectCategories.push(category ? category.innerText : 'Project');
+                }
+            });
 
             if (imagesArray.length === 0) return;
 
@@ -517,11 +1017,15 @@
             const counter = document.createElement('div');
             counter.className = 'lightbox-counter';
 
+            const title = document.createElement('div');
+            title.className = 'lightbox-title';
+
             lightboxContent.appendChild(lightboxImage);
             lightboxContent.appendChild(closeButton);
             lightboxContent.appendChild(prevButton);
             lightboxContent.appendChild(nextButton);
             lightboxContent.appendChild(counter);
+            lightboxContent.appendChild(title);
             lightboxOverlay.appendChild(lightboxContent);
             document.body.appendChild(lightboxOverlay);
 
@@ -533,13 +1037,19 @@
                 const imgSrc = imagesArray[currentIndex].src;
                 lightboxImage.src = imgSrc;
                 updateCounter();
+                updateTitle();
                 lightboxOverlay.classList.add('active');
                 document.body.style.overflow = 'hidden';
             }
 
             // Update counter display
             function updateCounter() {
-                counter.textContent = currentIndex + 1 + ' / ' + imagesArray.length;
+                counter.textContent = (currentIndex + 1) + ' / ' + imagesArray.length;
+            }
+
+            // Update title display
+            function updateTitle() {
+                title.textContent = projectNames[currentIndex] + ' - ' + projectCategories[currentIndex];
             }
 
             // Show next image
@@ -548,6 +1058,7 @@
                 const imgSrc = imagesArray[currentIndex].src;
                 lightboxImage.src = imgSrc;
                 updateCounter();
+                updateTitle();
             }
 
             // Show previous image
@@ -556,6 +1067,7 @@
                 const imgSrc = imagesArray[currentIndex].src;
                 lightboxImage.src = imgSrc;
                 updateCounter();
+                updateTitle();
             }
 
             // Close lightbox
@@ -564,12 +1076,24 @@
                 document.body.style.overflow = '';
             }
 
-            // Add click event to all gallery images
-            imagesArray.forEach((img, index) => {
-                img.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    openLightbox(index);
+            // Add click event to all project images and their containers
+            projectItems.forEach((item, index) => {
+                // Click on the entire project container
+                item.addEventListener('click', function(e) {
+                    if (!e.target.closest('.search-icon')) {
+                        e.stopPropagation();
+                        openLightbox(index);
+                    }
                 });
+
+                // Click on search icon specifically
+                const searchIcon = item.querySelector('.search-icon');
+                if (searchIcon) {
+                    searchIcon.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        openLightbox(index);
+                    });
+                }
             });
 
             // Event listeners for lightbox controls
